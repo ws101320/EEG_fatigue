@@ -1,24 +1,20 @@
-CWSTR-Net: A Channel-Weighted Spatial-Temporal Residual Network
-Based on NonSmooth Nonnegative Matrix Factorization for Fatigue
-Detection Using EEG Signals
+# CWSTR-Net: A Channel-Weighted Spatial-Temporal Residual Network Based on NonSmooth Nonnegative Matrix Factorization for Fatigue Detection Using EEG Signals
 
-# Introduce
-Offline unsupervised processing for EEG data channel weights.
+## Introduction
 
-While the main implementation of CWSTR-Net is in Python, the nsNMF algorithm that underpins the channel weighting functionality is based on the NMFLibrary-master, a pure-Matlab library that houses various algorithms for non-negative matrix factorization.
+CWSTR-Net employs offline unsupervised processing for determining EEG data channel weights. While the primary implementation of CWSTR-Net is in Python, the **nsNMF** algorithm, which underpins the channel weighting functionality, is derived from **NMFLibrary-master**, a pure-Matlab library containing various algorithms for non-negative matrix factorization.
 
-The nsNMF Channel Weighting Algorithm：algorithmrank1.m 
-Adjusting the rank yields different weights.
+### nsNMF Channel Weighting Algorithm
 
-Mapping weights to channels for each sample：algorithm.m 
+- **algorithmrank1.m**: Adjusting the rank yields different weights.
+- **algorithm.m**: Mapping weights to channels for each sample.
 
+## Installation
 
-# Installation:
+Ensure you have the following dependencies installed:
 
-* Python 3.10
-* Pytorch 2.0.0+cu118
-* Numpy  1.23.5
-* Scikit-learn  1.2.1
-* scipy  1.9.3
-
-
+- Python 3.10
+- Pytorch 2.0.0+cu118
+- Numpy 1.23.5
+- Scikit-learn 1.2.1
+- Scipy 1.9.3
