@@ -9,4 +9,5 @@ Detection Using EEG Signals
 * Scikit-learn  1.2.1
 * scipy  1.9.3
 
-* 
+# Introduce
+The NMFLibrary is a pure-Matlab library of a collection of algorithms of non-negative matrix factorization (NMF). 
