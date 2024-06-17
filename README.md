@@ -10,5 +10,12 @@ Detection Using EEG Signals
 * scipy  1.9.3
 
 # Introduce
-The NMFLibrary-master is a pure-Matlab library of a collection of algorithms of non-negative matrix factorization (NMF). 
+Offline unsupervised processing for EEG data channel weights.
+
+*The NMFLibrary-master is a pure-Matlab library of a collection of algorithms of non-negative matrix factorization (NMF). 
+
+*The nsNMF Channel Weighting Algorithm：algorithmrank1.m 
+Adjusting the rank yields different weights.
+
+*Mapping weights to channels for each sample：algorithm.m 
 
