@@ -13,7 +13,7 @@ import time
 import os
 from torch.utils.data import DataLoader, Subset, TensorDataset
 import warnings
-# 忽略特定类型的警告
+
 warnings.filterwarnings("ignore", message="Precision is ill-defined and being set to 0.0 in labels with no predicted samples.")
 
 print(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
@@ -83,9 +83,9 @@ class ResidualBlock(nn.Module):
         return out
 
 
-class ESTCNN_ResNet(nn.Module):
+class my_net(nn.Module):
     def __init__(self):
-        super(ESTCNN_ResNet, self).__init__()
+        super(my_net, self).__init__()
 
         self.conv1 = nn.Sequential(
             nn.Conv1d(25, 25, 3, stride=1, padding=0, bias=False),
@@ -151,7 +151,6 @@ def train_model(model, train_loader, criterion, optimizer, device):
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
-    # 计算平均损失和准确率
     epoch_loss = running_loss / total
     epoch_acc = correct / total
     return epoch_loss, epoch_acc
@@ -199,7 +198,7 @@ def evaluate_model(model, test_loader, device):
     return acc, f1, precision, recall
 
 
-# 主函数
+
 def main():
     num_epochs = 100
     lr = 0.001
@@ -216,7 +215,7 @@ def main():
     for subject_id in range(1, num_subjects + 1):
         print(f"Processing subject {subject_id}/{num_subjects}")
         train_loaders, val_loaders, test_loader = load_dataset(subject_id, batch_size, num_folds)
-        model = ESTCNN_ResNet().to(device)
+        model = my_net().to(device)
         optimizer = optim.Adam(model.parameters(), lr=lr)
         criterion = nn.CrossEntropyLoss()
 
@@ -244,22 +243,21 @@ def main():
         recall_mean = recall_sum / (num_epochs * num_folds)
 
         print(
-            f'被试 {subject_id} 平均性能: ACC:{acc_mean:.4f},F1:{f1_mean:.4f},Recall:{recall_mean:.4f},Precision:{precision_mean:.4f}')
+            f'Sunbject {subject_id} Mean: ACC:{acc_mean:.4f},F1:{f1_mean:.4f},Recall:{recall_mean:.4f},Precision:{precision_mean:.4f}')
 
-        # 累加总体平均性能
+
         overall_acc_sum += acc_mean
         overall_f1_sum += f1_mean
         overall_precision_sum += precision_mean
         overall_recall_sum += recall_mean
 
-    # 计算总体平均性能
     overall_acc_mean = overall_acc_sum / num_subjects
     overall_f1_mean = overall_f1_sum / num_subjects
     overall_precision_mean = overall_precision_sum / num_subjects
     overall_recall_mean = overall_recall_sum / num_subjects
 
     print(
-        f"总体平均性能: Test Acc: {overall_acc_mean:.4f}, F1 Score: {overall_f1_mean:.4f}, Precision: {overall_precision_mean:.4f}, Recall: {overall_recall_mean:.4f}")
+        f"Total_mean: Test Acc: {overall_acc_mean:.4f}, F1 Score: {overall_f1_mean:.4f}, Precision: {overall_precision_mean:.4f}, Recall: {overall_recall_mean:.4f}")
 
 
 if __name__ == '__main__':
